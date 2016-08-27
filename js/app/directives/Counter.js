@@ -9,6 +9,15 @@ function Counter() {
 		].join(''),
 		controller: function ($scope) {
 			$scope.count = 0;
+		},
+		link: function(scope, element, attr, ctrl){
+			element.on('click', function(){
+				scope.count++;
+				scope.$apply();
+			}),
+			element.$on('$destroy', function(){
+				element.off();
+			})
 		}
 	}
 }
